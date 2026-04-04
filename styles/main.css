@@ -1,0 +1,166 @@
+:root {
+    --bg: #000000;
+    --bg-alt: #0c0c0c;
+    --text: #ffffff;
+    --accent: #ccff00;
+    /* Acid Lime Green */
+    --grid-color: rgba(255, 255, 255, 0.07);
+}
+
+/* --- Theme Selection Overlay --- */
+#theme-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+#theme-overlay.active {
+    display: flex;
+}
+#theme-window {
+    width: 500px;
+    max-width: 90vw;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.03);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Darker Grotesque', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+h1,
+h2,
+.display-font {
+    font-family: 'Darker Grotesque', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* --- Custom Cursor --- */
+.cursor-trail {
+    position: fixed;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%); /* center it */
+    will-change: transform;
+}
+
+#cursor-1 { width: 16px; height: 16px; opacity: 1; }
+#cursor-2 { width: 12px; height: 12px; opacity: 0.8; }
+#cursor-3 { width: 8px; height: 8px; opacity: 0.6; }
+#cursor-4 { width: 4px; height: 4px; opacity: 0.4; }
+
+/* --- Grid System --- */
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-col {
+    border-right: 1px solid var(--grid-color);
+    height: 100%;
+}
+
+.grid-col:last-child {
+    border-right: none;
+}
+
+/* --- UI Elements --- */
+.noise-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.magnetic {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- Project Card --- */
+.project-card {
+    border: 1px solid var(--grid-color);
+    transition: border-color 0.5s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+}
+
+.lab-card.project-card:hover {
+    border-color: var(--grid-color);
+}
+
+.img-container img {
+    filter: grayscale(100%) contrast(1.1);
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-card:hover .img-container img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.05);
+}
+
+.line-reveal {
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+}
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .grid-overlay {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cursor-trail {
+        display: none;
+    }
+
+    body {
+        cursor: auto;
+    }
+}

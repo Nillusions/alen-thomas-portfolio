@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEN — Product & Brand Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+    <!-- Functional Elements -->
+    <div class="cursor-trail" id="cursor-1"></div>
+    <div class="cursor-trail" id="cursor-2"></div>
+    <div class="cursor-trail" id="cursor-3"></div>
+    <div class="cursor-trail" id="cursor-4"></div>
+    <div class="noise-bg"></div>
+
+    <!-- Permanent Grid Background -->
+    <div class="grid-overlay">
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+        <div class="grid-col"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-center mix-blend-difference text-white">
+        <div class="text-xl font-bold display-font tracking-tighter magnetic">ALEN THOMAS</div>
+        <div class="flex gap-6 md:gap-8 text-xs font-semibold tracking-widest uppercase items-center">
+            <a href="#expertise"
+                class="magnetic hover:text-[var(--accent)] transition-colors hidden md:block">Expertise</a>
+            <a href="#work" class="magnetic hover:text-[var(--accent)] transition-colors">Work</a>
+            <a href="#lab" class="magnetic hover:text-[var(--accent)] transition-colors hidden md:block">Lab</a>
+            <a href="#contact" class="magnetic hover:text-[var(--accent)] transition-colors">Connect</a>
+
+            <!-- Theme Toggle -->
+            <button id="theme-open-btn"
+                class="magnetic hover:text-black hover:bg-[var(--accent)] transition-colors border border-[var(--grid-color)] px-4 py-2 rounded-full cursor-none ml-2 md:ml-4">
+                Themes ✧
+            </button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="relative px-6 md:px-10 pt-40 pb-20 overflow-hidden">
+            <canvas id="hero-canvas"
+                class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none opacity-80"></canvas>
+            <div class="z-20 w-full relative">
+                <div class="overflow-hidden mb-2">
+                    <span
+                        class="inline-block translate-y-full hero-text opacity-0 text-sm md:text-base font-medium tracking-[0.3em] text-[var(--accent)]">
+                        ALL ABOUT STORIES, DOUBTS AND IDEAS!
+                    </span>
+                </div>
+                <h1 class="text-[clamp(3rem,11vw,9rem)] leading-[0.85] mb-8 font-black tracking-tighter">
+                    <div class="overflow-hidden py-1">
+                        <div class="hero-line translate-y-full opacity-0">Product and Brand.</div>
+                    </div>
+                    <div class="overflow-hidden py-1">
+                        <div class="hero-line translate-y-full opacity-0">Together.</div>
+                    </div>
+                </h1>
+
+                <div class="line-reveal hero-border mt-10"></div>
+            </div>
+        </section>
+
+        <!-- Full Width Photo -->
+        <section class="px-6 md:px-10 pb-20 md:pb-40">
+            <div id="photo-reveal-container"
+                class="w-full aspect-[21/9] md:aspect-[3/1] overflow-hidden bg-[var(--bg-alt)] relative group cursor-none">
+                <!-- Current Image (Default) -->
+                <img src="Images/Home/Alen%20Thomas.jpg" alt="Alen Thomas Default"
+                    class="absolute inset-0 w-full h-full object-cover reveal-img">
+
+                <!-- Attached Mask Reveal Image Fragment 1 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 2 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 3 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 4 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 5 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 6 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 7 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 8 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[125ms]"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 9 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[175ms]"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <!-- Attached Mask Reveal Image Fragment 10 -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[225ms]"
+                    style="clip-path: inset(50%); scale: 1.05;">
+
+                <!-- Append 15 new Fragments for trailing cluster density -->
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+                <img src="Images/Home/Alen%20Thomas%20mask%20image%20behind.png"
+                    class="photo-reveal-mask absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity"
+                    style="clip-path: inset(50%); scale: 1.05;">
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section id="expertise" class="py-20 md:py-40 px-6 md:px-10 border-t border-[var(--grid-color)]">
+            <h3 class="text-2xl md:text-4xl tracking-tighter mb-10 font-black uppercase">EXPERTISE</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Intro Paragraph -->
+                <div class="md:col-span-1">
+                    <p class="text-lg md:text-xl opacity-60 font-sans leading-relaxed">
+                        Hey, I'm Alen, an inter-disciplinary designer who thinks brands and products should actually
+                        talk to each other. So I try connecting strategy with pixels, experiments with outcomes, and
+                        chaos with clarity — all while still being unapologetically me.
+                        Lately, I am trying my best to explore AI and how it can make all of these experiences and
+                        stories more interesting.
+                    </p>
+                </div>
+                <!-- Card 1 -->
+                <div
+                    class="md:col-span-1 border border-[var(--grid-color)] p-8 bg-[var(--bg-alt)] hover:border-[var(--accent)] transition-colors group magnetic">
+                    <div
+                        class="text-[var(--accent)] text-xs font-bold tracking-widest uppercase mb-16 opacity-50 group-hover:opacity-100 transition-opacity">
+                        01 / DISCIPLINE</div>
+                    <h4 class="text-2xl md:text-3xl tracking-tighter mb-4 font-black uppercase">BRANDING</h4>
+                    <p class="text-sm md:text-base opacity-60 font-sans leading-relaxed">I don’t just create logos; I
+                        build identities that feel alive. My approach combines strategy, storytelling, and a touch of
+                        the unexpected to craft brands that don’t just exist—they connect, evolve, and leave a mark.</p>
+                </div>
+                <!-- Card 2 -->
+                <div
+                    class="md:col-span-1 border border-[var(--grid-color)] p-8 bg-[var(--bg-alt)] hover:border-[var(--accent)] transition-colors group magnetic">
+                    <div
+                        class="text-[var(--accent)] text-xs font-bold tracking-widest uppercase mb-16 opacity-50 group-hover:opacity-100 transition-opacity">
+                        02 / DISCIPLINE</div>
+                    <h4 class="text-2xl md:text-3xl tracking-tighter mb-4 font-black uppercase">PRODUCT DESIGN</h4>
+                    <p class="text-sm md:text-base opacity-60 font-sans leading-relaxed">I craft user-centric products
+                        that delight at every touchpoint, aligning seamlessly with your business goals. The experience
+                        comes first, intuitive, visually stunning, and unforgettable. This is design that doesn't just
+                        work; it resonates.</p>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="md:col-span-1 border border-[var(--grid-color)] p-8 bg-[var(--bg-alt)] hover:border-[var(--accent)] transition-colors group magnetic">
+                    <div
+                        class="text-[var(--accent)] text-xs font-bold tracking-widest uppercase mb-16 opacity-50 group-hover:opacity-100 transition-opacity">
+                        03 / DISCIPLINE</div>
+                    <h4 class="text-2xl md:text-3xl tracking-tighter mb-4 font-black uppercase">ART DIRECTION</h4>
+                    <p class="text-sm md:text-base opacity-60 font-sans leading-relaxed">I bring ideas to life with
+                        bold visuals and unexpected twists. My art direction creates moments that grab attention, spark
+                        curiosity, and leave a lasting impression. It’s not just about looking good—it’s about making
+                        people feel something.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section id="work" class="pt-20 md:pt-40 pb-32 md:pb-64 px-6 md:px-10 border-t border-[var(--grid-color)]">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                <h2 class="text-5xl md:text-8xl tracking-tighter">SELECTED <span class="opacity-30">PROJECTS</span>
+                </h2>
+                <p class="max-w-xs text-xs opacity-50 uppercase tracking-widest mt-6 md:mt-0">
+                    A curation of digital products that prioritize emotion through interaction.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 px-1 items-start">
+                <!-- Project 01 -->
+                <a href="https://www.behance.net/gallery/244793219/UX-analysis-and-research-of-a-business-marketplace"
+                    target="_blank" class="project-card group relative p-4 md:p-8 overflow-hidden flex flex-col block">
+                    <div class="img-container aspect-[4/3] overflow-hidden mb-8 bg-[#111]">
+                        <img src="Images/Projects/Verizon%20Thumbnail.png" alt="Project 01 Thumbnail"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-end">
+                        <span class="text-xs font-bold tracking-widest opacity-40 uppercase mb-2">01 / UX
+                            Research</span>
+                        <h3 class="text-2xl md:text-3xl tracking-tighter mb-2 font-black uppercase">UX analysis and
+                            research of a business marketplace</h3>
+                        <p class="text-sm opacity-60 uppercase tracking-widest mb-8 font-semibold">UX Research &
+                            Analysis</p>
+                        <div
+                            class="inline-flex items-center text-[var(--accent)] text-lg font-bold tracking-widest uppercase group-hover:underline underline-offset-8 w-max magnetic">
+                            VIEW PROJECT <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 02 -->
+                <a href="https://www.behance.net/gallery/230198961/A-Service-Design-led-Brand-Rollout-Case-Study-Exeen"
+                    target="_blank"
+                    class="project-card group relative p-4 md:p-8 overflow-hidden flex flex-col md:mt-32 block">
+                    <div class="img-container aspect-[4/3] overflow-hidden mb-8 bg-[#111]">
+                        <img src="Images/Projects/Exeen%20Thumbnail.png" alt="Project 02 Thumbnail"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-end">
+                        <span class="text-xs font-bold tracking-widest opacity-40 uppercase mb-2">02 / Service
+                            Design</span>
+                        <h3 class="text-2xl md:text-3xl tracking-tighter mb-2 font-black uppercase">A Service Design led
+                            Brand Rollout Case Study - Exeen</h3>
+                        <p class="text-sm opacity-60 uppercase tracking-widest mb-8 font-semibold">Service Design &
+                            Brand Identity</p>
+                        <div
+                            class="inline-flex items-center text-[var(--accent)] text-lg font-bold tracking-widest uppercase group-hover:underline underline-offset-8 w-max magnetic">
+                            VIEW PROJECT <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 03 -->
+                <a href="https://www.behance.net/gallery/229224665/Moovi-Movie-discovery-and-ticket-booking-app"
+                    target="_blank" class="project-card group relative p-4 md:p-8 overflow-hidden flex flex-col block">
+                    <div class="img-container aspect-[4/3] overflow-hidden mb-8 bg-[#111]">
+                        <img src="Images/Projects/Moovi-%20Thumb.png" alt="Project 03 Thumbnail"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-end">
+                        <span class="text-xs font-bold tracking-widest opacity-40 uppercase mb-2">03 / UX
+                            Design</span>
+                        <h3 class="text-2xl md:text-3xl tracking-tighter mb-2 font-black uppercase">Moovi - Movie
+                            discovery and ticket booking app</h3>
+                        <p class="text-sm opacity-60 uppercase tracking-widest mb-8 font-semibold">UX Design &
+                            Interaction Design</p>
+                        <div
+                            class="inline-flex items-center text-[var(--accent)] text-lg font-bold tracking-widest uppercase group-hover:underline underline-offset-8 w-max magnetic">
+                            VIEW PROJECT <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 04 -->
+                <a href="https://www.behance.net/gallery/158858441/Tulips-Rebranding" target="_blank"
+                    class="project-card group relative p-4 md:p-8 overflow-hidden flex flex-col md:mt-32 block">
+                    <div class="img-container aspect-[4/3] overflow-hidden mb-8 bg-[#111]">
+                        <img src="Images/Projects/Tulips%20Thumb.png" alt="Project 04 Thumbnail"
+                            class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-end">
+                        <span class="text-xs font-bold tracking-widest opacity-40 uppercase mb-2">04 / Branding</span>
+                        <h3 class="text-2xl md:text-3xl tracking-tighter mb-2 font-black uppercase">Tulips Rebranding
+                        </h3>
+                        <p class="text-sm opacity-60 uppercase tracking-widest mb-8 font-semibold">Brand Strategy &
+                            Visual
+                            Identity</p>
+                        <div
+                            class="inline-flex items-center text-[var(--accent)] text-lg font-bold tracking-widest uppercase group-hover:underline underline-offset-8 w-max magnetic">
+                            VIEW PROJECT <span class="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Additional Projects Table View -->
+            <div id="extra-projects-list" class="hidden flex-col border-t border-[var(--grid-color)] mt-20 md:mt-32">
+                <!-- Project 05 -->
+                <a href="https://www.behance.net/gallery/207111625/Imai-Rebranding" target="_blank"
+                    class="project-card py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 items-center px-4 -mx-4 group">
+                    <div
+                        class="img-container md:col-span-2 aspect-video bg-[#111] overflow-hidden border border-[var(--grid-color)]">
+                        <img src="Images/Projects/Imai th.png" alt="Project 05 Thumbnail"
+                            class="w-full h-full object-cover grayscale transition-all group-hover:grayscale-0">
+                    </div>
+                    <div class="md:col-span-3">
+                        <h4
+                            class="text-xl md:text-2xl font-bold uppercase transition-colors group-hover:text-[var(--accent)]">
+                            Imai Branding & Creative Direction</h4>
+                    </div>
+                    <div class="md:col-span-3 text-xs md:text-sm tracking-widest uppercase opacity-60">
+                        Brand Identity & Creative Direction
+                    </div>
+                    <div class="md:col-span-4 text-xs md:text-sm opacity-60">
+                        A rebrand for Imai, encompassing visual identity, packaging, and creative direction.
+                    </div>
+                </a>
+
+                <!-- Project 06 -->
+                <a href="https://www.behance.net/gallery/207551483/Christmas-is-Sweeter-Together-Ad-Campaign"
+                    target="_blank"
+                    class="project-card py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-4 items-center px-4 -mx-4 group">
+                    <div
+                        class="img-container md:col-span-2 aspect-video bg-[#111] overflow-hidden border border-[var(--grid-color)]">
+                        <img src="Images/Projects/kottaram.png" alt="Project 06 Thumbnail"
+                            class="w-full h-full object-cover grayscale transition-all group-hover:grayscale-0">
+                    </div>
+                    <div class="md:col-span-3">
+                        <h4
+                            class="text-xl md:text-2xl font-bold uppercase transition-colors group-hover:text-[var(--accent)]">
+                            Christmas is Sweeter Together</h4>
+                    </div>
+                    <div class="md:col-span-3 text-xs md:text-sm tracking-widest uppercase opacity-60">
+                        Ad Campaign
+                    </div>
+                    <div class="md:col-span-4 text-xs md:text-sm opacity-60">
+                        A Christmas ad campaign for Kottaram Group.
+                    </div>
+                </a>
+            </div>
+
+            <!-- See More Button -->
+            <div class="flex justify-center mt-20 md:mt-32 w-full">
+                <button id="see-more-btn"
+                    class="border border-[var(--accent)] px-8 py-4 text-center font-bold tracking-widest uppercase text-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-colors magnetic inline-block w-max">SEE
+                    MORE PROJECTS</button>
+            </div>
+        </section>
+
+        <!-- Thoughts Section -->
+        <section id="thoughts"
+            class="py-20 md:py-40 px-6 md:px-10 border-t border-[var(--grid-color)] bg-[var(--bg-alt)]">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                <div class="md:col-span-5">
+                    <h2 class="text-5xl md:text-7xl tracking-tighter sticky top-40">THOUGHTS</h2>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="space-y-20">
+                        <a href="https://medium.com/design-bootcamp/logos-arent-to-be-plastered-and-stick-into-a-mold-anymore-4fd71324c571"
+                            class="project-card reveal-on-scroll block group p-6 md:p-8">
+                            <span
+                                class="text-[var(--accent)] text-xs font-bold tracking-widest mb-4 block uppercase">THOUGHT
+                                01</span>
+                            <h4
+                                class="text-2xl md:text-4xl mb-6 tracking-tight font-black uppercase group-hover:text-[var(--accent)] transition-colors">
+                                Logos aren’t to be plastered and stuck into a mold anymore</h4>
+                            <p class="text-lg md:text-xl opacity-60 leading-relaxed font-sans">
+                                In the age of digital ubiquity, the logo has evolved beyond a mere emblem. It is no
+                                longer a static badge to be stamped onto a surface, but a dynamic, adaptable system that
+                                breathes with the brand.
+                            </p>
+                        </a>
+                        <a href="https://medium.com/@alenthomas/lets-understand-beautiful-47d02a04a33e"
+                            class="project-card reveal-on-scroll block group p-6 md:p-8">
+                            <span
+                                class="text-[var(--accent)] text-xs font-bold tracking-widest mb-4 block uppercase">THOUGHT
+                                02</span>
+                            <h4
+                                class="text-2xl md:text-4xl mb-6 tracking-tight font-black uppercase group-hover:text-[var(--accent)] transition-colors">
+                                Let’s understand beautiful</h4>
+                            <p class="text-lg md:text-xl opacity-60 leading-relaxed font-sans">
+                                Beauty is often perceived as subjective, a matter of personal taste or cultural
+                                conditioning.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Section -->
+        <section id="lab" class="py-20 md:py-40 px-6 md:px-10 border-t border-[var(--grid-color)]">
+            <div class="mb-20">
+                <h2 class="text-5xl md:text-8xl tracking-tighter">LAB<span class="opacity-30"> / EXPERIMENTS</span></h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <a href="https://www.behance.net/gallery/207299805/Creative-Heads-Portrait-Series"
+                    class="lab-card project-card group block p-4">
+                    <div
+                        class="img-container aspect-square bg-[#111] border border-[var(--grid-color)] overflow-hidden mb-4">
+                        <img src="Images/Lab/Creative heads.png" alt="Lab 01 Thumbnail"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">
+                    </div>
+                    <div
+                        class="magnetic inline-block text-xs md:text-sm font-bold tracking-widest uppercase group-hover:text-[var(--accent)] transition-colors cursor-none py-2">
+                        CREATIVE HEADS PORTRAIT SERIES</div>
+                </a>
+                <a href="https://www.behance.net/gallery/101150767/Devour-swallow-repress"
+                    class="lab-card project-card group block p-4">
+                    <div
+                        class="img-container aspect-square bg-[#111] border border-[var(--grid-color)] overflow-hidden mb-4">
+                        <img src="Images/Lab/Devour sallow repress.png" alt="Lab 02 Thumbnail"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">
+                    </div>
+                    <div
+                        class="magnetic inline-block text-xs md:text-sm font-bold tracking-widest uppercase group-hover:text-[var(--accent)] transition-colors cursor-none py-2">
+                        DEVOUR SWALLOW REPRESS</div>
+                </a>
+                <a href="https://www.behance.net/gallery/102200601/Abstract-Poster-Collection-July-2020"
+                    class="lab-card project-card group block p-4">
+                    <div
+                        class="img-container aspect-square bg-[#111] border border-[var(--grid-color)] overflow-hidden mb-4">
+                        <img src="Images/Lab/Abstract poster design.png" alt="Lab 03 Thumbnail"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">
+                    </div>
+                    <div
+                        class="magnetic inline-block text-xs md:text-sm font-bold tracking-widest uppercase group-hover:text-[var(--accent)] transition-colors cursor-none py-2">
+                        ABSTRACT POSTER COLLECTION JULY 2020</div>
+                </a>
+                <a href="https://www.behance.net/gallery/100208225/History-As-They-Saw-It-Recolor"
+                    class="lab-card project-card group block p-4">
+                    <div
+                        class="img-container aspect-square bg-[#111] border border-[var(--grid-color)] overflow-hidden mb-4">
+                        <img src="Images/Lab/History as they saw it.png" alt="Lab 04 Thumbnail"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">
+                    </div>
+                    <div
+                        class="magnetic inline-block text-xs md:text-sm font-bold tracking-widest uppercase group-hover:text-[var(--accent)] transition-colors cursor-none py-2">
+                        HISTORY AS THEY SAW IT</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience"
+            class="py-20 md:py-40 px-6 md:px-10 border-t border-[var(--grid-color)] bg-[var(--bg-alt)]">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                <div class="md:col-span-5">
+                    <h2 class="text-5xl md:text-7xl tracking-tighter sticky top-40">EXPERIENCE</h2>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="flex flex-col border-t border-[var(--grid-color)]">
+                        <!-- Job 1 -->
+                        <div
+                            class="py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-3 gap-2 px-4 -mx-4">
+                            <h4 class="text-lg md:text-xl font-bold uppercase col-span-1">Senior Visualiser</h4>
+                            <div class="text-xs md:text-sm tracking-widest uppercase opacity-60 self-center">Markivis
+                            </div>
+                            <div
+                                class="text-xs md:text-sm tracking-widest uppercase opacity-60 md:text-right self-center">
+                                Dec 2024 - Present</div>
+                        </div>
+                        <!-- Job 1a -->
+                        <div
+                            class="py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-3 gap-2 px-4 -mx-4">
+                            <h4 class="text-lg md:text-xl font-bold uppercase col-span-1">Founder & Visonary</h4>
+                            <div class="text-xs md:text-sm tracking-widest uppercase opacity-60 self-center">Creative
+                                after AI</div>
+                            <div
+                                class="text-xs md:text-sm tracking-widest uppercase opacity-60 md:text-right self-center">
+                                Feb 2026 - Present</div>
+                        </div>
+                        <!-- Job 2 -->
+                        <div
+                            class="py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-3 gap-2 px-4 -mx-4">
+                            <h4 class="text-lg md:text-xl font-bold uppercase col-span-1">Founding Designer</h4>
+                            <div class="text-xs md:text-sm tracking-widest uppercase opacity-60 self-center">Imai
+                                Studios</div>
+                            <div
+                                class="text-xs md:text-sm tracking-widest uppercase opacity-60 md:text-right self-center">
+                                Aug 2022 - Nov 2024</div>
+                        </div>
+                        <!-- Job 3 -->
+                        <div
+                            class="py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-3 gap-2 px-4 -mx-4">
+                            <h4 class="text-lg md:text-xl font-bold uppercase col-span-1">Senior Designer - Branding &
+                                Marketing</h4>
+                            <div class="text-xs md:text-sm tracking-widest uppercase opacity-60 self-center">MyOperator
+                                & HeyoPhone</div>
+                            <div
+                                class="text-xs md:text-sm tracking-widest uppercase opacity-60 md:text-right self-center">
+                                Feb 2021 - Sep 2022</div>
+                        </div>
+                        <!-- Job 4 -->
+                        <div
+                            class="py-6 border-b border-[var(--grid-color)] grid grid-cols-1 md:grid-cols-3 gap-2 px-4 -mx-4">
+                            <h4 class="text-lg md:text-xl font-bold uppercase col-span-1">Frelance Designer</h4>
+                            <div class="text-xs md:text-sm tracking-widest uppercase opacity-60 self-center">Independent
+                            </div>
+                            <div
+                                class="text-xs md:text-sm tracking-widest uppercase opacity-60 md:text-right self-center">
+                                2019 - 2021</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-20 flex flex-col sm:flex-row gap-4">
+                        <a href="#contact"
+                            class="border border-[var(--accent)] px-6 py-3 text-sm text-center font-bold tracking-widest uppercase text-[var(--accent)] hover:bg-[var(--accent)] hover:text-black transition-colors magnetic inline-block w-max">CONTACT
+                            ME</a>
+                        <a href="#"
+                            class="border border-white px-6 py-3 text-sm text-center font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors magnetic inline-block w-max">DOWNLOAD
+                            RESUME</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life Outside Design Section -->
+        <section id="life" class="py-20 md:py-40 bg-[var(--bg)] border-t border-[var(--grid-color)] overflow-hidden">
+            <div class="px-6 md:px-10 mb-20">
+                <h2 class="text-5xl md:text-8xl tracking-tighter mb-6">LIFE OUTSIDE<br><span
+                        class="opacity-30">DESIGN</span></h2>
+                <p class="max-w-6xl text-lg md:text-xl opacity-60 font-sans leading-relaxed">
+                    Outside the world of brands, pixels, and product flows, I'm just someone trying to make sense of
+                    life with a mix of curiosity and humor. I love movies, not in a film-buff "I know every director"
+                    way, but in a "this one frame just changed my entire worldview" way. I'm often exploring new places,
+                    hanging out with friends, or getting lost in conversations that jump from philosophy to food to why
+                    the world works the way it does. I read, I observe, I overthink. And I genuinely enjoy the small
+                    moments - a good coffee, a long walk, a late-night giggle fit that makes everything feel lighter.
+                    Life outside design keeps me grounded, curious, and human… which is probably why I'm good at the
+                    design part.
+                </p>
+            </div>
+
+            <!-- Infinite Marquee -->
+            <div class="marquee-wrapper flex gap-4 overflow-hidden ml-6 md:ml-10 py-10 cursor-none">
+                <div class="marquee flex gap-4 min-w-max">
+                    <div class="h-64 md:h-96 w-96 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/art.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-64 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/village.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div
+                        class="h-64 md:h-96 w-[30rem] bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/crowd.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-80 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/mirror.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-72 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/auto.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div
+                        class="h-64 md:h-96 w-[25rem] bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/history.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                </div>
+                <div class="marquee flex gap-4 min-w-max" aria-hidden="true">
+                    <div class="h-64 md:h-96 w-96 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/art.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-64 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/village.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div
+                        class="h-64 md:h-96 w-[30rem] bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/crowd.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-80 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/mirror.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="h-64 md:h-96 w-72 bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/auto.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                    <div
+                        class="h-64 md:h-96 w-[25rem] bg-[#111] flex-shrink-0 border border-[var(--grid-color)] magnetic">
+                        <img src="Images/Home/Life%20outside%20design/history.jpeg"
+                            class="w-full h-full object-cover grayscale">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <footer id="contact"
+            class="py-20 md:py-40 px-6 md:px-10 border-t border-[var(--grid-color)] relative overflow-hidden">
+            <div class="text-center mb-40">
+                <h2 class="text-6xl md:text-8xl tracking-relaxed leading-[0.9] mb-10 footer-title normal-case">
+                    Project? Idea? Design talk? <br>I'm here for it all, Drop me a message.
+                </h2>
+                <div class="flex flex-wrap justify-center gap-10">
+                    <a href="mailto:alenthomas028@gmail.com"
+                        class="text-xl md:text-3xl font-light hover:text-[var(--accent)] transition-colors magnetic underline underline-offset-8">Say
+                        Hello!</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-xs opacity-40 font-bold tracking-widest">With An Unparalleled Urge To Seek Ideas!</div>
+                <div class="flex flex-wrap gap-x-10 gap-y-4 justify-center text-xs font-bold tracking-widest uppercase">
+                    <a href="https://medium.com/@alenthomas" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-[var(--accent)] transition-colors magnetic">MEDIUM</a>
+                    <a href="https://dribbble.com/thenillusions" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-[var(--accent)] transition-colors magnetic">DRIBBBLE</a>
+                    <a href="https://www.linkedin.com/in/alen-thomas/" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-[var(--accent)] transition-colors magnetic">LINKEDIN</a>
+                    <a href="https://www.behance.net/alenthomas1" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-[var(--accent)] transition-colors magnetic">BEHANCE</a>
+                    <a href="https://nillusions.github.io/CreativeafterAI/" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-[var(--accent)] transition-colors magnetic">CREATIVE AFTER AI</a>
+                </div>
+                <div class="text-xs opacity-40 font-bold tracking-widest">With An Unparalleled Urge To Seek Ideas!</div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Theme Selection Overlay -->
+    <div id="theme-overlay">
+        <div id="theme-window" class="p-8 md:p-12">
+            <div class="flex justify-between items-center mb-10 pb-4 border-b border-[#333]">
+                <h3 class="text-2xl font-black tracking-tighter uppercase">Select Theme</h3>
+                <button id="theme-close-btn"
+                    class="text-xs uppercase tracking-widest opacity-60 hover:opacity-100 magnetic transition-opacity border border-[#333] px-4 py-2 rounded-full">Close
+                    X</button>
+            </div>
+
+            <!-- Background Swatches -->
+            <div class="mb-8">
+                <h4 class="text-xs tracking-widest uppercase opacity-60 mb-4 font-bold">Select Background</h4>
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #000000" data-bg="#000000" data-bgalt="#0c0c0c" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Pitch Black"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #0f172a" data-bg="#0f172a" data-bgalt="#1e293b" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Slate"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #00001a" data-bg="#00001a" data-bgalt="#000033" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Midnight Blue"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #1a0000" data-bg="#1a0000" data-bgalt="#330000" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Deep Crimson"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #1e1e1e" data-bg="#1e1e1e" data-bgalt="#2d2d2d" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Charcoal"></button>
+
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #f5f5f5" data-bg="#f5f5f5" data-bgalt="#e5e5e5" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Off-White"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #fdfbf7" data-bg="#fdfbf7" data-bgalt="#f0e9df" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Cream"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #e5e7eb" data-bg="#e5e7eb" data-bgalt="#d1d5db" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Cool Grey"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #f0fff4" data-bg="#f0fff4" data-bgalt="#dcfce7" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Mint"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #faf5ff" data-bg="#faf5ff" data-bgalt="#f3e8ff" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Lavender"></button>
+
+                    <!-- 4 New Backgrounds -->
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #2e004f" data-bg="#2e004f" data-bgalt="#3d0066" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Midnight Purple"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #002914" data-bg="#002914" data-bgalt="#004220" data-text="#ffffff"
+                        data-grid="rgba(255,255,255,0.07)" title="Forest Green"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #f5ebd5" data-bg="#f5ebd5" data-bgalt="#e6d8ba" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Sand"></button>
+                    <button
+                        class="bg-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-black transition-all focus:scale-110"
+                        style="background-color: #e0f2fe" data-bg="#e0f2fe" data-bgalt="#bae6fd" data-text="#050505"
+                        data-grid="rgba(0,0,0,0.15)" title="Ice Blue"></button>
+                </div>
+            </div>
+
+            <!-- Accent Swatches -->
+            <div class="mb-10">
+                <h4 class="text-xs tracking-widest uppercase opacity-60 mb-4 font-bold">Select Accent</h4>
+                <div class="flex flex-wrap gap-3">
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ccff00" data-accent="#ccff00" title="Acid Lime"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ff00ff" data-accent="#ff00ff" title="Neon Pink"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #0044ff" data-accent="#0044ff" title="Electric Blue"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #00ff66" data-accent="#00ff66" title="Matrix Green"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ff0033" data-accent="#ff0033" title="Crimson Red"></button>
+
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ff5500" data-accent="#ff5500" title="Bright Orange"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ffe600" data-accent="#ffe600" title="Cyber Yellow"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #7700ff" data-accent="#7700ff" title="Vibrant Violet"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-[#333] transition-all focus:scale-110"
+                        style="background-color: #ffffff" data-accent="#ffffff" title="Monochrome White"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-[#999] transition-all focus:scale-110"
+                        style="background-color: #050505" data-accent="#050505" title="Monochrome Black"></button>
+
+                    <!-- 4 New Accents -->
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #00f0ff" data-accent="#00f0ff" title="Hot Cyan"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ff3366" data-accent="#ff3366" title="Neon Coral"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #ffff00" data-accent="#ffff00" title="Laser Lemon"></button>
+                    <button
+                        class="accent-swatch w-10 h-10 rounded-full border-[3px] border-transparent hover:border-white transition-all focus:scale-110"
+                        style="background-color: #a855f7" data-accent="#a855f7" title="Vibrant Lavender"></button>
+                </div>
+            </div>
+
+            <!-- Reset -->
+            <div class="flex justify-center mt-auto border-t border-[#333] pt-6">
+                <button id="theme-reset-btn"
+                    class="inline-flex items-center text-[#ccff00] text-xs font-bold tracking-widest uppercase hover:underline underline-offset-8 magnetic">
+                    Reset to Default Framework
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
