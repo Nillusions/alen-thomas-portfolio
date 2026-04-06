@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initMagneticEffect();
     initMarquee();
-    initHeroCanvas();
     initProjectReveal();
     initPhotoReveal();
     initDynamicThumbnails();
@@ -44,57 +43,77 @@ function initPhotoReveal() {
     
     if (!container || maskImgs.length === 0) return;
     
-    // Dynamically program properties for up to 25 fragments for trailing setup
+    let mouse = { x: 0, y: 0 };
+    let isHovering = false;
+    let rafId = null;
+    
     const fragments = [];
     maskImgs.forEach((_, i) => {
         fragments.push({
-            w: Math.random() * 30 + 30,      // tightly cropped random widths
-            h: Math.random() * 40 + 30,      // tightly cropped random heights
-            ox: (Math.random() - 0.5) * 80,  // closely packed grouping offset
+            w: Math.random() * 30 + 30,
+            h: Math.random() * 40 + 30,
+            ox: (Math.random() - 0.5) * 80,
             oy: (Math.random() - 0.5) * 80,
-            // Increasing GSAP duration heavily trails the highest indexes, staggering the cluster
-            d: 0.05 + (i * 0.04) 
+            // Cap max trailing duration at 0.3s to prevent lag-induced conflicts
+            d: Math.min(0.05 + (i * 0.03), 0.3)
         });
+    });
+    
+    container.addEventListener('mouseenter', () => {
+        isHovering = true;
+        if (!rafId) rafId = requestAnimationFrame(update);
     });
     
     container.addEventListener('mousemove', (e) => {
         const rect = container.getBoundingClientRect();
-        const baseX = e.clientX - rect.left;
-        const baseY = e.clientY - rect.top;
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        isHovering = false;
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        
+        // Kill all active tweens and collapse fragments back
+        maskImgs.forEach((mask) => {
+            gsap.to(mask, {
+                clipPath: 'inset(50%)',
+                duration: 0.35,
+                ease: 'power3.out',
+                overwrite: true
+            });
+        });
+    });
+    
+    function update() {
+        if (!isHovering) return;
+        
+        const rect = container.getBoundingClientRect();
         
         maskImgs.forEach((mask, index) => {
             if (index >= fragments.length) return;
             const frag = fragments[index];
             
-            // Apply offsets directly to base coordinates to form the cluster
-            const x = baseX + frag.ox;
-            const y = baseY + frag.oy;
+            const x = mouse.x + frag.ox;
+            const y = mouse.y + frag.oy;
             
-            // Calculate pixel insets natively bound to the container
-            const top = Math.max(0, y - frag.h / 2);
-            const bottom = Math.max(0, rect.height - (y + frag.h / 2));
-            const left = Math.max(0, x - frag.w / 2);
-            const right = Math.max(0, rect.width - (x + frag.w / 2));
+            // Clamp so fragments stay fully within container bounds
+            const top    = Math.max(0, Math.min(y - frag.h / 2, rect.height));
+            const bottom = Math.max(0, Math.min(rect.height - (y + frag.h / 2), rect.height));
+            const left   = Math.max(0, Math.min(x - frag.w / 2, rect.width));
+            const right  = Math.max(0, Math.min(rect.width - (x + frag.w / 2), rect.width));
             
             gsap.to(mask, {
                 clipPath: `inset(${top}px ${right}px ${bottom}px ${left}px)`,
-                scale: 1, 
                 duration: frag.d,
-                ease: "power2.out"
+                ease: 'power2.out',
+                overwrite: true
             });
         });
-    });
-    
-    container.addEventListener('mouseleave', () => {
-        maskImgs.forEach((mask) => {
-            gsap.to(mask, {
-                clipPath: "inset(50%)",
-                scale: 1.05,
-                duration: 0.4,
-                ease: "power3.out"
-            });
-        });
-    });
+        
+        rafId = requestAnimationFrame(update);
+    }
 }
 
 // 1.5 Project Reveal UI
@@ -298,109 +317,4 @@ function initMarquee() {
     });
 }
 
-// 6. Interactive Hero Canvas
-function initHeroCanvas() {
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    let width, height;
-    let particles = [];
-    const spacing = 45; // Space between grid dots
-    
-    let mouse = { x: -1000, y: -1000 };
-    
-    function resize() {
-        const parent = canvas.parentElement;
-        width = parent.offsetWidth;
-        height = parent.offsetHeight;
-        canvas.width = width;
-        canvas.height = height;
-        initParticles();
-    }
-    
-    function initParticles() {
-        particles = [];
-        const cols = Math.floor(width / spacing);
-        const rows = Math.floor(height / spacing);
-        
-        // Center the grid
-        const offsetX = (width - cols * spacing) / 2;
-        const offsetY = (height - rows * spacing) / 2;
-        
-        for (let i = 0; i <= cols; i++) {
-            for (let j = 0; j <= rows; j++) {
-                particles.push({
-                    x: offsetX + i * spacing,
-                    y: offsetY + j * spacing,
-                    baseX: offsetX + i * spacing,
-                    baseY: offsetY + j * spacing,
-                    vx: 0,
-                    vy: 0,
-                    alpha: 0,
-                    size: Math.random() * 6 + 2 // Vary sizes
-                });
-            }
-        }
-    }
-    
-    window.addEventListener('resize', resize);
-    
-    const parent = canvas.parentElement;
-    parent.addEventListener('mousemove', (e) => {
-        const rect = parent.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-    });
-    
-    parent.addEventListener('mouseleave', () => {
-        mouse.x = -1000;
-        mouse.y = -1000;
-    });
-    
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        
-        particles.forEach(p => {
-            const dx = mouse.x - p.baseX;
-            const dy = mouse.y - p.baseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            
-            const maxDist = 250; // slightly wider than original 200
-            
-            if (dist < maxDist) {
-                const force = (maxDist - dist) / maxDist;
-                const angle = Math.atan2(dy, dx);
-                
-                // Simple radial distortion wave
-                const targetX = p.baseX - Math.cos(angle) * force * 50;
-                const targetY = p.baseY - Math.sin(angle) * force * 50;
-                
-                p.vx += (targetX - p.x) * 0.2;
-                p.vy += (targetY - p.y) * 0.2;
-                
-                p.alpha = force * 0.8;
-            } else {
-                p.vx += (p.baseX - p.x) * 0.1;
-                p.vy += (p.baseY - p.y) * 0.1;
-                p.alpha *= 0.9;
-            }
-            
-            p.vx *= 0.8;
-            p.vy *= 0.8;
-            
-            p.x += p.vx;
-            p.y += p.vy;
-            
-            if (p.alpha > 0.02) {
-                ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
-                ctx.fillRect(p.x - p.size/2, p.y - p.size/2, p.size, p.size);
-            }
-        });
-        
-        requestAnimationFrame(animate);
-    }
-    
-    resize();
-    animate();
-}
+
